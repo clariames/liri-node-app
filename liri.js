@@ -52,17 +52,22 @@ var Liri = function () {
         });
     };
 
-    this.findMovie = function (spotify) {
-        var URL = 'https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx';
+    this.findMovie = function (movieName) {
+        var URL = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
         axios.get(URL).then(function (response) {
             var jsonData = response.data;
 
             var songData = [
-                "Artist: " + jsonData.artist,
-                "Song: " + jsonData.song,
-                "Spotify link: " + jsonData.url,
-                "Album: " + jsonData.album
+                "Title of the movie: " + jsonData.Title,
+                "Year the movie came out: " + jsonData.Year,
+                "IMDB Rating of the movie: " + jsonData.imdbRating,
+                "Rotten Tomatoes Rating of the movie: " + jsonData.tomatoRating,
+                "Country where the movie was produced: " + jsonData.Country,
+                "Language of the movie: " + jsonData.Language,
+                "Plot of the movie: " + jsonData.Plot,
+                "Actors in the movie: " + jsonData.Actors
+               
 
             ].join("\n\n");
 
