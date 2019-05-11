@@ -15,10 +15,8 @@ var Liri = function () {
         var URL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
 
         axios.get(URL).then(function (response) {
-            // Place the response.data into a variable, jsonData.
             var jsonData = response.data;
 
-            // showData ends up being the string containing the show data we will print to the console
             var artistData = [
                 "Name of venue: " + jsonData.venue.name,
                 "Venue location: " + jsonData.venue.city.country,
@@ -26,7 +24,6 @@ var Liri = function () {
 
             ].join("\n\n");
 
-            // Append showData and the divider to log.txt, print showData to the console
             fs.appendFile("log.txt", artistData + divider, function (err) {
                 if (err) throw err;
                 console.log(artistData);
@@ -34,6 +31,61 @@ var Liri = function () {
         });
     };
 
+    this.findSong = function (spotify) {
+        var URL = 'https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx';
+
+        axios.get(URL).then(function (response) {
+            var jsonData = response.data;
+
+            var songData = [
+                "Artist: " + jsonData.venue.name,
+                "Song: " + jsonData.venue.city.country,
+                "Spotify link: " + jsonData.datetime,
+                "Album: " + jsonData.datetime
+
+            ].join("\n\n");
+
+            fs.appendFile("log.txt", songData + divider, function (err) {
+                if (err) throw err;
+                console.log(songData);
+            });
+        });
+    };
+
+    this.findMovie = function (spotify) {
+        var URL = 'https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx';
+
+        axios.get(URL).then(function (response) {
+            var jsonData = response.data;
+
+            var songData = [
+                "Artist: " + jsonData.artist,
+                "Song: " + jsonData.song,
+                "Spotify link: " + jsonData.url,
+                "Album: " + jsonData.album
+
+            ].join("\n\n");
+
+            fs.appendFile("log.txt", songData + divider, function (err) {
+                if (err) throw err;
+                console.log(songData);
+            });
+        });
+    };
+
+    fs.readFile("rando.txt", "utf8", function(error, data) {
+
+        if (error) {
+          return console.log(error);
+        }
+      
+        console.log(data);
+      
+        var dataArr = data.split(",");
+      
+        console.log(dataArr);
+      
+      });
 
 
 };
